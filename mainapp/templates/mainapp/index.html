@@ -1,0 +1,16 @@
+{% extends "mainapp/root.html"%}
+
+{% block content %}
+    {% include "mainapp/includes/inc__header.html" %}
+    <div class="top-content">
+        <div class="hot-deal">
+                <p>HOT DEAL</p>
+                <p> {{ product.name }} </p>
+                <a href="{% url 'main:product' pk=product.pk %}"><img src="/media/{{ product.img }}" width="200px" alt="#"></a>
+                <a href="{% url 'basket:new_product' pk=product.pk %}" style="display:block"><button>в корзину</button></a>
+            </div>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum recusandae nostrum doloremque et voluptas sequi, sunt explicabo corporis laudantium. Voluptate praesentium id cumque. Numquam culpa earum eligendi nostrum facere animi nulla, deserunt magni quasi debitis. Illum magni deleniti, harum officiis culpa cum mollitia asperiores voluptas, debitis dolore temporibus. Laboriosam placeat possimus cumque ipsa, tempora asperiores qui nobis nihil! Culpa quis delectus totam nam nulla autem ratione veniam quos maxime. Vitae expedita nisi architecto quidem libero necessitatibus et maiores laboriosam mollitia beatae quis assumenda blanditiis porro voluptate quam dolores odit commodi voluptates fuga tempora praesentium delectus, quo possimus a? Harum, ipsum cum provident blanditiis veritatis, beatae itaque quia voluptas eius ducimus optio perspiciatis cumque, aliquid ipsam temporibus voluptatibus dolores consectetur magnam atque voluptatum. Atque, consectetur dolor vitae exercitationem sit non debitis temporibus praesentium tempore. Unde voluptates nihil distinctio optio nostrum nemo vitae molestias ratione esse ad perferendis excepturi architecto dicta ex expedita sit debitis, qui facilis officia non minima alias enim? Obcaecati, nesciunt ullam, possimus aliquid repellat sapiente ratione vitae repudiandae sit distinctio nostrum cum accusamus saepe numquam tempore, temporibus non minima incidunt ea dolorum iste? Provident fugit iusto accusantium cum esse praesentium, blanditiis itaque non? Necessitatibus temporibus amet corrupti mollitia.
+            <h1>Где мы находимся</h1>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d412508.1860578919!2d-115.45518692834202!3d36.124673764267634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80beb782a4f57dd1%3A0x3accd5e6d5b379a3!2z0JvQsNGBLdCS0LXQs9Cw0YEsINCd0LXQstCw0LTQsCwg0KHQqNCQ!5e0!3m2!1sru!2sua!4v1591202146638!5m2!1sru!2sua" width="400" height="300" frameborder="0" style="border:0; display: block;" allowfullscreen="" aria-hidden="false" tabindex="0" ></iframe>
+        </div>
+{% endblock %}

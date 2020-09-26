@@ -1,0 +1,20 @@
+{% extends "adminapp/root.html"%}
+{% block content %}
+{% include "adminapp/includes/inc__admin_menu.html" %}
+<a href="{% url 'adminapp:user_create' %}">Создать пользователя</a>
+<div class="admin-block">
+    <hr>
+    <p>pk: {{ object.pk }}</p>
+    <p>username: {{ object.username }}</p>
+    <img src="/media/{{ object.img }}" width="300px" alt="img not found">
+    <p>age: {{ object.age }}</p>
+    <p>email: {{ object.email }}</p>
+    <p>is_active:{{ object.is_active }}</p>
+    <p>last_login:{{ object.last_login }}</p>
+    <p>is_superuser:{{ object.is_superuser }}</p>
+    <p>username:{{ object.username }}</p>
+    <p>data_joined:{{ object.data_joined }}</p>
+    <a href="{% url 'adminapp:user_change' pk=object.pk %}">Изменить</a>
+    <a href="{% url 'adminapp:user_delete' pk=object.pk %}">Удалить</a>
+</div>
+{% endblock %}

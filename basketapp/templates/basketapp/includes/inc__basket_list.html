@@ -1,0 +1,25 @@
+{% if basket_products %}
+    {% for i in basket_products %}
+        <div class="basket_product">
+            <div>
+                {{ i.product.name }}
+            </div>
+            <img src="/media/{{ i.product.img }}" alt="" width="300px">
+            <div>
+                {{ i.product.text }}
+            </div>
+            <div>
+                Количество: {{ i.count }}
+            </div>
+            <a class="basketadd" href="#" data-pk="{{ i.pk }}" data-count="{{ i.count }}">
+                добавить
+            </a>
+            <a class="basketpop" href="#" data-pk="{{ i.pk }}" data-count="{{ i.count }}">
+                уменьшить
+            </a>
+            <hr>
+        </div>
+        <div class="space"></div>
+    {% endfor %}
+    <div>Количество товаров ({{ user.total_count }}) стоимостью ({{ user.total_sum }})</div>
+{% endif %}

@@ -1,0 +1,18 @@
+{% extends "adminapp/root.html"%}
+{% block content %}
+{% include "adminapp/includes/inc__admin_menu.html" %}
+<a href="{% url 'adminapp:product_create' %}">Создать продукт</a>
+{% for i in products %}
+    <div class="admin-block">
+        <hr>
+        <p>pk: {{ i.pk }}</p>
+        <p>name: {{ i.name }}</p>
+        <p>catalog: {{ i.pk.name }}</p>
+        <img src="/media/{{ i.img }}" width="300px" alt="">
+        <p>text: {{ i.text }}</p>
+        <p>price: {{ i.price }}</p>
+        <a href='{% url "adminapp:product_change" i.pk %}'>Изменить</a>
+        <a href='{% url "adminapp:product_delete" i.pk %}'>Удалить</a>
+    </div>
+{% endfor %}
+{% endblock %}

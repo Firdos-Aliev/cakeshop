@@ -1,0 +1,5 @@
+<form method="post" enctype="multipart/form-data" class="auth-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="form-control" type="submit" value={{ button_title }}>
+</form>

@@ -1,0 +1,112 @@
+body{
+    margin: 0;
+}
+
+.header{
+    background-color: black;
+}
+
+footer{
+    position: fixed; 
+    left: 0; bottom: 0; 
+    padding: 5px;
+    background: black; 
+    color: white; 
+    width: 100%; 
+}
+
+.space{
+    height: 40px;
+}
+
+.logo a{
+    text-decoration: none;
+    color: white;
+}
+
+.menu{
+    display: block;
+    text-align: center;
+}
+
+.menu li{
+    display: inline-block;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+    font-size: 150%;
+    padding: 10px;
+}
+
+.menu li a:hover{
+    color: black;
+    background-color: white;
+}
+
+.content{
+    text-align: center;
+}
+
+.top-content{
+    margin:0 auto;
+    width: 90%;
+}
+
+.product-block{
+    display: inline-block;
+    width: 30%;
+    margin: 30px;
+    border: 2px black solid;
+    padding: 10px;
+}
+
+
+.product-block .prod-link img{
+    width: 90%;
+    height: 300px;
+}
+
+.product-block .prod-link img:hover{
+    outline: 5px solid black;
+}
+
+.buy{
+    text-decoration: none;
+}
+
+.buy-list{
+    float: right;
+}
+
+.buy div{
+    background-color: black;
+    color: white;
+    width: 50%;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.buy div:hover{
+    background-color: white;
+    color: black;
+    outline: 2px solid black;
+}
+
+.contacts{
+    width: 500px;
+    margin: 0 auto;
+}
+
+.form-content{
+    width: 40%;
+    border: 1px solid black;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+.active{
+    outline:1px solid white
+}

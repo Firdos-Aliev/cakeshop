@@ -1,0 +1,10 @@
+{% extends "authapp/root.html"%}
+
+{% block content %}
+    {% include "authapp/includes/inc__header.html" %}
+<div class="form-content">
+    {% include "authapp/includes/inc__form.html" %}
+    <a href="{% url 'auth:register' %}"><button class="form-control">регистрация</button></a>
+    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/"><button class="form-control">google</button></a>
+</div>
+{% endblock %}

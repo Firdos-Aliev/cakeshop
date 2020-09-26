@@ -1,0 +1,23 @@
+{% extends "mainapp/root.html"%}
+{% load static %}
+
+{% block content %}
+{% include "mainapp/includes/inc__header.html" %}
+<div>
+    <div>
+        {{ product.name }}
+    </div>
+
+    <img src="/media/{{ product.img }}" width="300px" alt="#">
+    <div>
+        {{ product.text }}
+    </div>
+    <div>
+        {{ product.price }}
+    </div>
+    <a href="{% url 'basket:new_product' pk=product.pk %}"><button>в корзину</button></a>
+
+</div>
+
+
+{% endblock %}

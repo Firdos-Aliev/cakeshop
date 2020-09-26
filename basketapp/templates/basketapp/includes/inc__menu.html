@@ -1,0 +1,13 @@
+<ul class="menu">
+    <li><a href="{% url 'main:index'%}">Главная</a></li>
+    <li><a href="{% url 'main:catalog'%}" class="{% if request.resolver_match.url_name == 'catalog' %}active{% endif %}">Каталог</a></li>
+    <li><a href="{% url 'main:contacts'%}" class="{% if request.resolver_match.url_name == 'contacts' %}active{% endif %}">Контакты</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'auth:profile'%}" class="{% if request.resolver_match.url_name == 'profile' %}active{% endif %}">{{ user.username }}</a></li>
+        <li><a href="{% url 'auth:logout'%}">Выйти</a></li>
+    {% else %}
+        <li><a href="{% url 'auth:login'%}">Войти</a></li>
+    {% endif %}
+</ul>
+
+

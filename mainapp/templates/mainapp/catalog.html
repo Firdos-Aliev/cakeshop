@@ -1,0 +1,15 @@
+{% extends "mainapp/root.html"%}
+{% load static %}
+
+{% block content %}
+{% include "mainapp/includes/inc__header.html" %}
+<div class="content">
+    {% for i in catalogs %}
+    <div class="product-block">
+        <p class="name">{{ i.name }}</p>
+        <a href="{% url 'main:products' pk=i.pk %}" class="prod-link"><img src= "/media/{{ i.img }}"  alt=""></a>
+        <p>{{ i.text }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

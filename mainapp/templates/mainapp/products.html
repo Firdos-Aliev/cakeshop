@@ -1,0 +1,21 @@
+{% extends "mainapp/root.html"%}
+{% load static %}
+
+{% block content %}
+{% include "mainapp/includes/inc__header.html" %}
+<div class="content">
+    {% for i in products %}
+    <div class="product-block">
+        <p class="name">{{ i.name }}</p>
+        <! -- вместо заглушки сделать ссылку на сам товар -->
+        <a href="{% url 'main:product' pk=i.pk %}" class="prod-link"><img src="/media/{{ i.img }}" alt=""></a>
+        <p>{{ i.text }}</p>
+        <p>Цена: {{ i.price }} $</p>
+        <! -- вместо заглушки сделать добавление в корзину -->
+        <a href="{% url 'basket:new_product' pk=i.pk %}" class="buy">
+            <div>В корзину</div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

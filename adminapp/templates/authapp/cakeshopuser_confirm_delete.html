@@ -1,0 +1,6 @@
+{% extends "adminapp/root.html"%}
+{% block content %}
+{% include "adminapp/includes/inc__admin_menu.html" %}
+<p>Вы уверены что хотите удалить пользователя {{ object.username }}</p>
+{% include "adminapp/includes/inc__form.html" %}
+{% endblock %}

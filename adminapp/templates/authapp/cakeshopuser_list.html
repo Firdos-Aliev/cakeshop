@@ -1,0 +1,35 @@
+{% extends "adminapp/root.html"%}
+{% block content %}
+{% include "adminapp/includes/inc__admin_menu.html" %}
+<a href="{% url 'adminapp:user_create' %}">Создать пользователя</a>
+{% for i in object_list %}
+    <div class="admin-block">
+        <hr>
+        <p>pk: {{ i.pk }}</p>
+        <p>username: {{ i.username }}</p>
+        <img src="/media/{{ i.img }}" width="300px" alt="img not found">
+        <p>age: {{ i.age }}</p>
+        <p>email: {{ i.email }}</p>
+        <p>active:{{ i.is_active }}</p>
+        <a href="{% url 'adminapp:user_detail' pk=i.pk %}">Подробнее</a>
+        <a href="{% url 'adminapp:user_change' pk=i.pk %}">Изменить</a>
+        <a href="{% url 'adminapp:user_delete' pk=i.pk %}">Удалить</a>
+    </div>
+{% endfor %}
+<div class="pagination-block">
+    <hr>
+    {% if page_obj.has_previous %}
+        <a href="{% url 'adminapp:users' page=page_obj.previous_page_number %}"><<</a>
+    {% endif %}
+    {% for page in paginator.page_range %}
+        {% if page_obj.number == page %}
+            {{ page }}
+        {% else %}
+            <a href="{% url 'adminapp:users' page=page %}">{{ page }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <a href="{% url 'adminapp:users' page=page_obj.next_page_number %}">>></a>
+    {% endif %}
+</div>
+{% endblock %}
