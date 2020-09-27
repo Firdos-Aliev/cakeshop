@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
-from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserChangeForm
-from authapp.models import CakeShopUser
+from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserChangeForm, CakeShopUserProfileForm
 from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -18,7 +17,7 @@ def login(request):
             user = auth.authenticate(username=username,
                                      password=password)  # создаем обьект пользователя с эго парметрами (логин, пароль)
             if user and user.is_active:
-                auth.login(request, user)  # авторизируемся
+                auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')  # авторизируемся
                 return HttpResponseRedirect(reverse('main:index'))  # должно перекинуть на главную
     else:
         form = ShopUserLoginForm()
@@ -57,16 +56,23 @@ def register(request):
 @login_required
 def profile(request):
     if request.method == "POST":
-        form = ShopUserRegisterForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
+        form = ShopUserChangeForm(request.POST, request.FILES, instance=request.user)
+        profile = CakeShopUserProfileForm(request.POST, request.FILES, instance=request.user.cakeshopuserprofile)
+        if form.is_valid() and profile.is_valid():
             form.save()
+            profile.save()
             return HttpResponseRedirect(reverse('main:index'))
     else:
         form = ShopUserChangeForm(instance=request.user)
+        profile = CakeShopUserProfileForm(instance=request.user.cakeshopuserprofile)
+    print(request.user)
+    print("----------------------------------------")
+    print(request.user.cakeshopuserprofile)
     content = {
         "main_title": "профиль",
         "button_title": "изменить",
         "form": form,
+        "profile": profile
     }
     return render(request, "authapp/profile.html", content)
 

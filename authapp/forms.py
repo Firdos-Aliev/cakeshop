@@ -2,8 +2,10 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 import django.forms as forms
 
-
 # форма на основе модели
+from authapp.models import CakeShopUserProfile
+
+
 class ShopUserLoginForm(AuthenticationForm):
     class Meta:
         model = get_user_model()
@@ -25,6 +27,8 @@ class ShopUserRegisterForm(UserCreationForm):
         user.is_active = False
         # salt = user.activation_key можно ли так? задать соль сразу в БД
         user.save()
+        # user.save_user_profile()
+        # CakeShopUserProfile.objects.create(user=user) # при захоже через google+ не заходит сюда
         return user
 
 
@@ -39,3 +43,9 @@ class ShopUserChangeForm(UserChangeForm):
             field.help_text = ''
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
+
+
+class CakeShopUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = CakeShopUserProfile
+        fields = ("gender", "text")
