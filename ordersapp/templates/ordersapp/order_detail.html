@@ -1,0 +1,11 @@
+{% extends "mainapp/root.html"%}
+
+{% block content %}
+    {% include "mainapp/includes/inc__header.html" %}
+    {% for i in object_list %}
+            <p>Товар: {{ i.product.name }}</p>
+            <p>Количество: {{ i.quantity }}</p>
+            <p>Цена: {{ i.product.price }}</p>
+            <hr>
+    {% endfor %}
+{% endblock %}

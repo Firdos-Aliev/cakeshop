@@ -1,0 +1,15 @@
+{% extends "mainapp/root.html"%}
+
+{% block content %}
+    {% include "mainapp/includes/inc__header.html" %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ order_form_set.management_form }}
+        {% for form in order_form_set.forms %}
+            {{ form.as_p }}
+            <hr>
+        {% endfor %}
+    <input type="submit" value="потвердить">
+    </form>
+{% endblock %}

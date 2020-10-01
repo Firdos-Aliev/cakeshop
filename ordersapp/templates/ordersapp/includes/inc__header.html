@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="header">
+    <div class="logo">
+        <a href="{% url 'main:index'%}">HomeBackery</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'basket:index' %}" class="buy-list"><img src="{% static 'img/ishop.png' %}"/></a>
+        {% endif %}
+    </div>
+    {% include "mainapp/includes/inc__menu.html" %}
+</div>

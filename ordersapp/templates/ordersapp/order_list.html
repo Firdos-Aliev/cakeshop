@@ -1,0 +1,16 @@
+{% extends "mainapp/root.html"%}
+
+{% block content %}
+    {% include "mainapp/includes/inc__header.html" %}
+    {% for i in object_list %}
+        {% if i.is_active %}
+            <p>Номер заказа: {{ i.pk }}</p>
+            <p>Пользователь: {{ i.user.username }}</p>
+            <p>Создан: {{ i.created }}</p>
+            <p>Статус: {{ i.get_status_display }}</p>
+            <a href="{% url 'orders:read' pk=i.pk %}">Просмотреть заказ</a>
+            <hr>
+        {% endif %}
+    {% endfor %}
+<a href="{% url 'orders:create' %}">Новый заказ</a>
+{% endblock %}
