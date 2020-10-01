@@ -1,9 +1,10 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import user_passes_test
 from django.db import transaction
 from django.forms import inlineformset_factory
-from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
+from django.utils.decorators import method_decorator
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ordersapp.forms import OrderForm, OrderItemForm
 from ordersapp.models import Order, OrderItem
@@ -21,12 +22,12 @@ class UsersOrderMixin:
         return Order.objects.filter(user=self.request.user)
 
 
-class OrdersRead(PageMainTitleMixin, UsersOrderMixin, ListView):
+class OrdersRead(PageMainTitleMixin, UsersOrderMixin, LoginRequiredMixin, ListView):
     main_title = "заказ"
     model = Order
 
 
-class OrderCreate(PageMainTitleMixin, CreateView):
+class OrderCreate(PageMainTitleMixin, LoginRequiredMixin, CreateView):
     main_title = "создать заказ"
     model = Order
     form_class = OrderForm
@@ -72,21 +73,19 @@ class OrderCreate(PageMainTitleMixin, CreateView):
                 order_item.instance = self.object
                 order_item.save()
             self.request.user.basket_set.all().delete()
-            return super().form_valid(form)
+        return super().form_valid(form)
 
 
-class OrderDetail(PageMainTitleMixin, DetailView):
+class OrderDetail(PageMainTitleMixin, LoginRequiredMixin, DetailView):
     main_title = "просмотреть заказ"
     model = Order
 
     def get_context_data(self, *, object_list=None, **kwargs):
         data = super().get_context_data(object_list=None, **kwargs)
-        #print("____________________________________________")
         order = data['object']
         order_item = OrderItem.objects.filter(order=order)
-        #print(order_item)
         data['object_list'] = order_item
-        #print(data['object'])
+        # print(data['object'])
         return data
     # def get_queryset(self):  # для получения request
     # order = get_object_or_404(Order, pk=pk)
@@ -94,11 +93,32 @@ class OrderDetail(PageMainTitleMixin, DetailView):
     # return order_items
 
 
-def orderItemRead(request, pk):
-    order = get_object_or_404(Order, pk=pk)
-    order_items = OrderItem.objects.filter(order=order)
-    content = {
-        "main_title": "Заказ " + pk,
-        "object_list": order_items
-    }
-    return render(request, 'ordersapp/order_detail.html', content)
+class OrderUpdate(PageMainTitleMixin, LoginRequiredMixin, UpdateView):
+    main_title = "изменить заказ"
+    model = Order
+    form_class = OrderForm
+    success_url = reverse_lazy("orders:list")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        data = super().get_context_data(**kwargs)
+
+        OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=1)
+        if self.request.POST:
+            form_set = OrderFormSet(self.request.POST, self.request.FILES, instance=self.object
+                                    )
+        else:
+            form_set = OrderFormSet(instance=self.object)
+        data['order_form_set'] = form_set
+
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        orderitems = context['order_form_set']
+
+        with transaction.atomic():
+            self.object = form.save()
+            if orderitems.is_valid():
+                orderitems.instance = self.object
+                orderitems.save()
+        return super().form_valid(form)

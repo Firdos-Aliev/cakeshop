@@ -9,6 +9,7 @@
             <p>Создан: {{ i.created }}</p>
             <p>Статус: {{ i.get_status_display }}</p>
             <a href="{% url 'orders:read' pk=i.pk %}">Просмотреть заказ</a>
+            <a href="{% url 'orders:update' pk=i.pk %}">Изменить заказ</a>
             <hr>
         {% endif %}
     {% endfor %}

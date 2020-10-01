@@ -8,4 +8,5 @@ urlpatterns = [
     path('list/', ordersapp.OrdersRead.as_view(), name="list"),
     path('create/', ordersapp.OrderCreate.as_view(), name="create"),
     path('list/<int:pk>/', ordersapp.OrderDetail.as_view(), name="read"),
+    path('update/<int:pk>/', ordersapp.OrderUpdate.as_view(), name="update"),
 ]
