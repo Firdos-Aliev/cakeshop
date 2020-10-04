@@ -2,15 +2,11 @@
 
 {% block content %}
     {% include "mainapp/includes/inc__header.html" %}
+    <p>Вы уверены что хотите отменить заказ</p>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        {{ order_form_set.management_form }}
-        {% for form in order_form_set.forms %}
-            {{ form.as_p }}
-
-            <hr>
-        {% endfor %}
-    <input type="submit" value="потвердить">
+        <input type="submit" value="Потвердить">
     </form>
+    <a href="{% url 'orders:list' %}"><button>Отмена</button></a>
 {% endblock %}

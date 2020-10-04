@@ -2,6 +2,9 @@
 
 {% block content %}
     {% include "mainapp/includes/inc__header.html" %}
+    <p>Стоимость заказа: {{ object.get_total_sum }}</p>
+    <p>Количество товара: {{ object.get_items_count }}</p>
+    <hr>
     {% for i in object_list %}
             <p>Товар: {{ i.product.name }}</p>
             <p>Количество: {{ i.quantity }}</p>

@@ -24,6 +24,19 @@ class Order(models.Model):
                               default=FORMING)
     is_active = models.BooleanField(verbose_name='активен', default=True)
 
+    def get_total_sum(self):
+        # order = self.orderitem_set.all() # каждая модкль поучить свой заказ
+        sum = 0
+        for i in self.orderitem_set.all():
+            sum += i.product.price * i.quantity
+        return sum
+
+    def get_items_count(self):
+        count = 0
+        for i in self.orderitem_set.all():
+            count += i.quantity
+        return count
+
 
 class OrderItem(models.Model):
     # related_name я обратной связи по ключю orederitem_set

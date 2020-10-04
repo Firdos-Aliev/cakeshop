@@ -3,15 +3,22 @@
 {% block content %}
     {% include "mainapp/includes/inc__header.html" %}
     {% for i in object_list %}
-        {% if i.is_active %}
             <p>Номер заказа: {{ i.pk }}</p>
             <p>Пользователь: {{ i.user.username }}</p>
             <p>Создан: {{ i.created }}</p>
             <p>Статус: {{ i.get_status_display }}</p>
-            <a href="{% url 'orders:read' pk=i.pk %}">Просмотреть заказ</a>
-            <a href="{% url 'orders:update' pk=i.pk %}">Изменить заказ</a>
+            <p>Цена заказа: {{ i.get_total_sum }} $</p>
+            <p>Количество товара: {{ i.get_items_count }}</p>
+            {% if i.status == i.FORMING %}
+                <a href="{% url 'orders:confirm' pk=i.pk %}">Оплатить заказ</a>
+                <a href="{% url 'orders:read' pk=i.pk %}">Просмотреть заказ</a>
+                <a href="{% url 'orders:update' pk=i.pk %}">Изменить заказ</a>
+                <a href="{% url 'orders:delete' pk=i.pk %}">Отменить заказ</a>
+            {% endif %}
+            {% if i.status == i.PAID %}
+                <a href="{% url 'orders:read' pk=i.pk %}">Просмотреть заказ</a>
+            {% endif %}
             <hr>
-        {% endif %}
     {% endfor %}
 <a href="{% url 'orders:create' %}">Новый заказ</a>
 {% endblock %}

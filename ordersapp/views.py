@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.db import transaction
 from django.forms import inlineformset_factory
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ordersapp.forms import OrderForm, OrderItemForm
@@ -122,3 +124,25 @@ class OrderUpdate(PageMainTitleMixin, LoginRequiredMixin, UpdateView):
                 orderitems.instance = self.object
                 orderitems.save()
         return super().form_valid(form)
+
+
+class OrderDelete(PageMainTitleMixin, LoginRequiredMixin, DeleteView):
+    main_title = "Отмена заказа"
+    model = Order
+    success_url = reverse_lazy("orders:list")
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_active = False
+        self.object.status = self.object.CANCEL
+
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+def order_confirm(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    order.status = Order.PAID
+    order.save()
+
+    return HttpResponseRedirect(reverse('orders:list'))
