@@ -4,7 +4,7 @@
     <li><a href="{% url 'main:contacts'%}" class="{% if request.resolver_match.url_name == 'contacts' %}active{% endif %}">Контакты</a></li>
     {% if user.is_authenticated %}
         <li><a href="{% url 'auth:profile'%}" class="{% if request.resolver_match.url_name == 'profile' %}active{% endif %}">{{ user.username }}</a></li>
-        <li><a href="{% url 'ordersapp:list' %}" class="{% if request.resolver_match.url_name == '#' %}active{% endif %}">Заказы</a></li>
+        <li><a href="{% url 'ordersapp:list' %}" class="{% if request.resolver_match.url_name == 'list' %}active{% endif %}">Заказы</a></li>
     {% if user.is_superuser %}
         <li><a href="{% url 'adminapp:users' page=1 %}">Админка</a></li>
     {%endif%}

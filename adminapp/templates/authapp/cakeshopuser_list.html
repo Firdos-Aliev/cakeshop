@@ -1,4 +1,6 @@
 {% extends "adminapp/root.html"%}
+{% load no_avatar %}
+
 {% block content %}
 {% include "adminapp/includes/inc__admin_menu.html" %}
 <a href="{% url 'adminapp:user_create' %}">Создать пользователя</a>
@@ -7,7 +9,7 @@
         <hr>
         <p>pk: {{ i.pk }}</p>
         <p>username: {{ i.username }}</p>
-        <img src="/media/{{ i.img }}" width="300px" alt="img not found">
+        <img src="/media/{{ i.img|avatar }}" width="300px" alt="#">
         <p>age: {{ i.age }}</p>
         <p>email: {{ i.email }}</p>
         <p>active:{{ i.is_active }}</p>

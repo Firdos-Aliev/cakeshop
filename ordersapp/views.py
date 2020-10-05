@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.db import transaction
 from django.forms import inlineformset_factory
 from django.http import HttpResponseRedirect
@@ -53,6 +53,7 @@ class OrderCreate(PageMainTitleMixin, LoginRequiredMixin, CreateView):
                 for i in range(len(basket)):
                     form_set.forms[i].initial['product'] = basket[i].product
                     form_set.forms[i].initial['quantity'] = basket[i].count
+                    form_set.forms[i].initial['price'] = basket[i].product.price
             else:
                 form_set = OrderFormSet()
         # передаем в контекст
@@ -105,11 +106,16 @@ class OrderUpdate(PageMainTitleMixin, LoginRequiredMixin, UpdateView):
         data = super().get_context_data(**kwargs)
 
         OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=1)
-        if self.request.POST:
+        if self.request.method == 'POST':
             form_set = OrderFormSet(self.request.POST, self.request.FILES, instance=self.object
                                     )
         else:
             form_set = OrderFormSet(instance=self.object)
+            for form in form_set.forms:
+                if form.instance.pk:
+                    form.initial['price'] = form.instance.product.price
+                else:
+                    form.initial['price'] = 0
         data['order_form_set'] = form_set
 
         return data
@@ -140,6 +146,7 @@ class OrderDelete(PageMainTitleMixin, LoginRequiredMixin, DeleteView):
         return HttpResponseRedirect(self.get_success_url())
 
 
+@login_required
 def order_confirm(request, pk):
     order = get_object_or_404(Order, pk=pk)
     order.status = Order.PAID

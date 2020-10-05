@@ -165,8 +165,9 @@ if os.path.exists(SOCIAL_SECRETS_FILE):
     with open('cakeshop/social.json', 'r') as f:
         SOCIAL = json.load(f)
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SOCIAL['web'].get('client_id', '')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SOCIAL['web'].get('client_secret', '')
+if (SOCIAL):
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SOCIAL['web'].get('client_id', '')
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SOCIAL['web'].get('client_secret', '')
 
 LOGIN_ERROR_URL = '/auth/login/'
 
