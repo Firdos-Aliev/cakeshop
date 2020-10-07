@@ -125,7 +125,8 @@ def catalog_change(request, pk):
 
 @user_passes_test(user_check)
 def catalog_delete(request, pk):
-    Catalog.objects.filter(pk=pk).first().delete()
+    catalog = Catalog.objects.filter(pk=pk).first()
+    catalog.is_active = False
     return HttpResponseRedirect(reverse('adminapp:catalogs'))
 
 
@@ -180,7 +181,9 @@ def product_change(request, pk):
 
 @user_passes_test(user_check)
 def product_delete(request, pk):
-    product = Product.objects.filter(pk=pk).first().delete()
+    product = Product.objects.filter(pk=pk).first()
+    product.is_active = False
+    product.save()
     return HttpResponseRedirect(reverse('adminapp:products'))
 
 

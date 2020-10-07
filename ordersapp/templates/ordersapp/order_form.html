@@ -1,38 +1,40 @@
 {% extends "ordersapp/root.html"%}
 
 
-
 {% block content %}
-    {% include "mainapp/includes/inc__header.html" %}
-        Общая стоимость: <p class="total_price"></p>
-        Общее количество: <p class="total_count"></p>
-        <hr>
-        <div class="order-form">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                    {{ order_form_set.management_form }}
-                    {% for form in order_form_set.forms %}
-                             {% for field in form.visible_fields %}
-                                {% for hidden in form.hidden_fields %}
-                                    {{ hidden }}
-                                {% endfor %}
-                                {% if field.name == 'price' %}
-                                    {{ field.name }}
-                                    {{ field.value }}
-                                    <input type="hidden" id="id_orderitem_set-{{ forloop.parentloop.counter0 }}-price" value="{{ field.value }}">
-                                    <br>
-                                {% else %}
-                                    {{ field.name }}
-                                    {{ field }}
-                                    <br>
-                                {% endif %}
-                        {% endfor %}
-                        <hr>
+{% include "mainapp/includes/inc__header.html" %}
+Общая стоимость: <p class="total_price"></p>
+Общее количество: <p class="total_count"></p>
+<hr>
+<div class="order-form">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ order_form_set.management_form }}
+        {% for form in order_form_set.forms %}
+            <div class="order-list">
+                {% for field in form.visible_fields %}
+                {% for hidden in form.hidden_fields %}
+                {{ hidden }}
                 {% endfor %}
-                <input type="submit" value="потвердить">
-            </form>
-        </div>
+                {% if field.name == 'price' %}
+                {{ field.name }}
+                {{ field.value }}
+                <input type="hidden" id="id_orderitem_set-{{ forloop.parentloop.counter0 }}-price"
+                       value="{{ field.value }}">
+                <br>
+                {% else %}
+                {{ field.name }}
+                {{ field }}
+                <br>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <hr>
+        {% endfor %}
+        <input type="submit" value="потвердить">
+    </form>
+</div>
 
 
 {% endblock %}

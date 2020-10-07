@@ -30,7 +30,7 @@ def contacts(request):
 
 
 def catalog(request):  # например пришел pk=1 (торты)
-    catalogs = Catalog.objects.all()  # тут есть поле pk, которое мы передаем
+    catalogs = Catalog.objects.filter(is_active=True)  # тут есть поле pk, которое мы передаем
 
     content = {
         "main_title": "каталог",
@@ -40,8 +40,8 @@ def catalog(request):  # например пришел pk=1 (торты)
 
 
 def products(request, pk):
-    category = get_object_or_404(Catalog, pk=pk)
-    products = Product.objects.filter(category=category)
+    category = get_object_or_404(Catalog, pk=pk, is_active=True)
+    products = Product.objects.filter(category=category, is_active=True)
     content = {
         "main_title": category.name,
         "products": products
@@ -50,7 +50,7 @@ def products(request, pk):
 
 
 def product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = get_object_or_404(Product, pk=pk, is_active=True)
     content = {
         "main_title": product.name,
         "product": product

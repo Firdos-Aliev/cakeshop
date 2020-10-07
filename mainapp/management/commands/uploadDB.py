@@ -3,7 +3,7 @@ from mainapp.models import Catalog, Product
 from authapp.models import CakeShopUser
 import json, os
 
-JSON_PATH = 'mainapp/json'
+JSON_PATH = 'json'
 
 
 def load_from_json(file_name):

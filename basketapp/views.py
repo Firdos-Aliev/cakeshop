@@ -22,7 +22,7 @@ def index(request):
 
 @login_required
 def new_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = get_object_or_404(Product, pk=pk, is_active=True)
     basket = Basket.objects.filter(user=request.user, product=product).first()
 
     if basket is None:

@@ -52,7 +52,6 @@ window.onload = function(){
     updateOrder();
 
     orderForm.on('change','input[type="number"]', function(event){
-
         let orderId = event.target.name;
         orderId = orderId.replace('orderitem_set-','');
         orderId = orderId.replace('-quantity','');
@@ -89,6 +88,15 @@ window.onload = function(){
 
     orderForm.on('change','select', function(event){
         console.log(event.target);
+    });
+
+
+
+    $('.order-list').formset({
+        addText: 'добавить продукт',
+        deleteText: 'удалить',
+        prefix: 'orderitems',
+        //removed: deleteOrder
     });
 
 }
