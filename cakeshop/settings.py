@@ -88,13 +88,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-    #'default': {
-    #        'NAME': 'cakeshop',
-    #        'ENGINE': 'django.db.backends.postgresql',
-    #        'USER': 'django',
-    #        'PASSWORD': 'geekbrains',
-    #        'HOST': 'localhost'
-    #}
+    # 'default': {
+    #    'NAME': 'cakeshop',
+    #    'ENGINE': 'django.db.backends.postgresql',
+    #    'USER': 'django',
+    #    'PASSWORD': '1234',
+    #    'HOST': 'localhost',
+    # }
 }
 
 # Password validation
@@ -141,8 +141,8 @@ DOMAIN_NAME = 'http://localhost:8000'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'firdos1234567891@gmail.com'
-EMAIL_HOST_PASSWORD = 'waterwate456'
+EMAIL_HOST_USER = 'user@gmail.com'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
 

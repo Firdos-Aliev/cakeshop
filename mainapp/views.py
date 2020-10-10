@@ -13,7 +13,7 @@ def rand_product():
 
 def index(request):
     # print("index:", request.resolver_match.url_name) тут находим для request.resolver_match.url_name для active
-    print(request)
+    # print(request)
 
     content = {
         "main_title": "главная",

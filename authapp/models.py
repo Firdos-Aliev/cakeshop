@@ -85,4 +85,3 @@ class CakeShopUserProfile(models.Model):
 def save_user_profile(sender, instance, created, **kwargs):
     if created:
         CakeShopUserProfile.objects.create(user=instance)
-

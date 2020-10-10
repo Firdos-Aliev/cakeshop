@@ -14,5 +14,4 @@ def load_from_json(file_name):
 class Command(BaseCommand):
     def handle(self, *args, **options):
         super_user = CakeShopUser.objects.create_superuser(username='django', password='geekbrains', email='email@gamil.com')
-        print("test")
 
