@@ -24,6 +24,11 @@ class UsersOrderMixin:
         return Order.objects.filter(user=self.request.user)
 
 
+class OptimizationQueriesMixin:
+    def get_queryset(self):
+        return Order.objects.select_related().all()
+
+
 class OrdersRead(PageMainTitleMixin, UsersOrderMixin, LoginRequiredMixin, ListView):
     main_title = "заказ"
     model = Order
@@ -43,7 +48,7 @@ class OrderCreate(PageMainTitleMixin, LoginRequiredMixin, CreateView):
         if self.request.method == 'POST':
             form_set = OrderFormSet(self.request.POST, self.request.FILES)
         else:
-            basket = self.request.user.basket_set.all()
+            basket = self.request.user.basket_set.select_related().all()
             # basket = Basket.objects.filter(user = self.request.user)
             if len(basket) > 0:
                 # это класс для списка форм
@@ -83,17 +88,19 @@ class OrderDetail(PageMainTitleMixin, LoginRequiredMixin, DetailView):
     main_title = "просмотреть заказ"
     model = Order
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        data = super().get_context_data(object_list=None, **kwargs)
-        order = data['object']
-        order_item = OrderItem.objects.filter(order=order)
-        data['object_list'] = order_item
-        # print(data['object'])
-        return data
-    # def get_queryset(self):  # для получения request
-    # order = get_object_or_404(Order, pk=pk)
-    # order_items = OrderItem.objects.filter(order=order)
-    # return order_items
+
+#  исправил по законам фреймворка
+#    def get_context_data(self, *, object_list=None, **kwargs):
+#        data = super().get_context_data(object_list=None, **kwargs)
+#        order = data['object']
+#        order_item = OrderItem.objects.filter(order=order)
+#        data['object_list'] = order_item
+#        # print(data['object'])
+#        return data
+# def get_queryset(self):  # для получения request
+# order = get_object_or_404(Order, pk=pk)
+# order_items = OrderItem.objects.filter(order=order)
+# return order_items
 
 
 class OrderUpdate(PageMainTitleMixin, LoginRequiredMixin, UpdateView):

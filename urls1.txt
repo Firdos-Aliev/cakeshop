@@ -1,0 +1,114 @@
+/	mainapp.views.index	main:index
+/__debug__/render_panel/	debug_toolbar.views.render_panel	djdt:render_panel
+/__debug__/sql_explain/	debug_toolbar.panels.sql.views.sql_explain	djdt:sql_explain
+/__debug__/sql_profile/	debug_toolbar.panels.sql.views.sql_profile	djdt:sql_profile
+/__debug__/sql_select/	debug_toolbar.panels.sql.views.sql_select	djdt:sql_select
+/__debug__/template_source/	debug_toolbar.panels.templates.views.template_source	djdt:template_source
+/admin/	django.contrib.admin.sites.index	admin:index
+/admin/<app_label>/	django.contrib.admin.sites.app_index	admin:app_list
+/admin/auth/group/	django.contrib.admin.options.changelist_view	admin:auth_group_changelist
+/admin/auth/group/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/auth/group/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:auth_group_change
+/admin/auth/group/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:auth_group_delete
+/admin/auth/group/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:auth_group_history
+/admin/auth/group/add/	django.contrib.admin.options.add_view	admin:auth_group_add
+/admin/auth/group/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:auth_group_autocomplete
+/admin/authapp/cakeshopuser/	django.contrib.admin.options.changelist_view	admin:authapp_cakeshopuser_changelist
+/admin/authapp/cakeshopuser/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/authapp/cakeshopuser/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:authapp_cakeshopuser_change
+/admin/authapp/cakeshopuser/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:authapp_cakeshopuser_delete
+/admin/authapp/cakeshopuser/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:authapp_cakeshopuser_history
+/admin/authapp/cakeshopuser/add/	django.contrib.admin.options.add_view	admin:authapp_cakeshopuser_add
+/admin/authapp/cakeshopuser/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:authapp_cakeshopuser_autocomplete
+/admin/basketapp/basket/	django.contrib.admin.options.changelist_view	admin:basketapp_basket_changelist
+/admin/basketapp/basket/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/basketapp/basket/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:basketapp_basket_change
+/admin/basketapp/basket/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:basketapp_basket_delete
+/admin/basketapp/basket/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:basketapp_basket_history
+/admin/basketapp/basket/add/	django.contrib.admin.options.add_view	admin:basketapp_basket_add
+/admin/basketapp/basket/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:basketapp_basket_autocomplete
+/admin/jsi18n/	django.contrib.admin.sites.i18n_javascript	admin:jsi18n
+/admin/login/	django.contrib.admin.sites.login	admin:login
+/admin/logout/	django.contrib.admin.sites.logout	admin:logout
+/admin/mainapp/catalog/	django.contrib.admin.options.changelist_view	admin:mainapp_catalog_changelist
+/admin/mainapp/catalog/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/mainapp/catalog/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:mainapp_catalog_change
+/admin/mainapp/catalog/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:mainapp_catalog_delete
+/admin/mainapp/catalog/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:mainapp_catalog_history
+/admin/mainapp/catalog/add/	django.contrib.admin.options.add_view	admin:mainapp_catalog_add
+/admin/mainapp/catalog/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:mainapp_catalog_autocomplete
+/admin/mainapp/product/	django.contrib.admin.options.changelist_view	admin:mainapp_product_changelist
+/admin/mainapp/product/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/mainapp/product/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:mainapp_product_change
+/admin/mainapp/product/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:mainapp_product_delete
+/admin/mainapp/product/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:mainapp_product_history
+/admin/mainapp/product/add/	django.contrib.admin.options.add_view	admin:mainapp_product_add
+/admin/mainapp/product/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:mainapp_product_autocomplete
+/admin/ordersapp/order/	django.contrib.admin.options.changelist_view	admin:ordersapp_order_changelist
+/admin/ordersapp/order/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/ordersapp/order/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:ordersapp_order_change
+/admin/ordersapp/order/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:ordersapp_order_delete
+/admin/ordersapp/order/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:ordersapp_order_history
+/admin/ordersapp/order/add/	django.contrib.admin.options.add_view	admin:ordersapp_order_add
+/admin/ordersapp/order/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:ordersapp_order_autocomplete
+/admin/password_change/	django.contrib.admin.sites.password_change	admin:password_change
+/admin/password_change/done/	django.contrib.admin.sites.password_change_done	admin:password_change_done
+/admin/r/<int:content_type_id>/<path:object_id>/	django.contrib.contenttypes.views.shortcut	admin:view_on_site
+/admin/social_django/association/	django.contrib.admin.options.changelist_view	admin:social_django_association_changelist
+/admin/social_django/association/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/social_django/association/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:social_django_association_change
+/admin/social_django/association/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:social_django_association_delete
+/admin/social_django/association/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:social_django_association_history
+/admin/social_django/association/add/	django.contrib.admin.options.add_view	admin:social_django_association_add
+/admin/social_django/association/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:social_django_association_autocomplete
+/admin/social_django/nonce/	django.contrib.admin.options.changelist_view	admin:social_django_nonce_changelist
+/admin/social_django/nonce/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/social_django/nonce/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:social_django_nonce_change
+/admin/social_django/nonce/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:social_django_nonce_delete
+/admin/social_django/nonce/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:social_django_nonce_history
+/admin/social_django/nonce/add/	django.contrib.admin.options.add_view	admin:social_django_nonce_add
+/admin/social_django/nonce/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:social_django_nonce_autocomplete
+/admin/social_django/usersocialauth/	django.contrib.admin.options.changelist_view	admin:social_django_usersocialauth_changelist
+/admin/social_django/usersocialauth/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/social_django/usersocialauth/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:social_django_usersocialauth_change
+/admin/social_django/usersocialauth/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:social_django_usersocialauth_delete
+/admin/social_django/usersocialauth/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:social_django_usersocialauth_history
+/admin/social_django/usersocialauth/add/	django.contrib.admin.options.add_view	admin:social_django_usersocialauth_add
+/admin/social_django/usersocialauth/autocomplete/	django.contrib.admin.options.autocomplete_view	admin:social_django_usersocialauth_autocomplete
+/adminapp/catalog/change/<int:pk>/	adminapp.views.catalog_change	adminapp:catalog_change
+/adminapp/catalog/create/	adminapp.views.catalog_create	adminapp:catalog_create
+/adminapp/catalog/delete/<int:pk>/	adminapp.views.catalog_delete	adminapp:catalog_delete
+/adminapp/catalogs/	adminapp.views.CatalogRead	adminapp:catalogs
+/adminapp/products/	adminapp.views.ProductsRead	adminapp:products
+/adminapp/products/change/<int:pk>	adminapp.views.product_change	adminapp:product_change
+/adminapp/products/create/	adminapp.views.product_create	adminapp:product_create
+/adminapp/products/delete/<int:pk>	adminapp.views.product_delete	adminapp:product_delete
+/adminapp/user/<int:pk>/detail/	adminapp.views.UserDetail	adminapp:user_detail
+/adminapp/user/change/<int:pk>/	adminapp.views.UserChange	adminapp:user_change
+/adminapp/user/create/	adminapp.views.UserCreate	adminapp:user_create
+/adminapp/user/delete/<int:pk>/	adminapp.views.UserDelete	adminapp:user_delete
+/adminapp/users/<int:page>/	adminapp.views.UsersRead	adminapp:users
+/auth/login/	authapp.views.login	auth:login
+/auth/logout/	authapp.views.logout	auth:logout
+/auth/profile/	authapp.views.profile	auth:profile
+/auth/register/	authapp.views.register	auth:register
+/auth/user/<int:pk>/verify/<str:key>/	authapp.views.verify	auth:user_verify
+/basket/basket_page/	basketapp.views.index	basket:index
+/basket/new_product/<int:pk>/	basketapp.views.new_product	basket:new_product
+/basket/product/<int:pk>/add/<int:count>/ajax/	basketapp.views.add
+/basket/product/<int:pk>/pop/<int:count>/ajax/	basketapp.views.pop
+/catalog/	mainapp.views.catalog	main:catalog
+/catalog/<int:pk>/	mainapp.views.products	main:products
+/contacts/	mainapp.views.contacts	main:contacts
+/media/<path>	django.views.static.serve
+/orders/confirm/<int:pk>/	ordersapp.views.order_confirm	orders:confirm
+/orders/create/	ordersapp.views.OrderCreate	orders:create
+/orders/delete/<int:pk>/	ordersapp.views.OrderDelete	orders:delete
+/orders/list/	ordersapp.views.OrdersRead	orders:list
+/orders/list/<int:pk>/	ordersapp.views.OrderDetail	orders:read
+/orders/update/<int:pk>/	ordersapp.views.OrderUpdate	orders:update
+/product/<int:pk>/	mainapp.views.product	main:product
+/social/auth/complete/<backend>/	social_django.views.complete	social:complete
+/social/auth/disconnect/<backend>/	social_django.views.disconnect	social:disconnect
+/social/auth/disconnect/<backend>/<association_id>/	social_django.views.disconnect	social:disconnect_individual
+/social/auth/login/<backend>/	social_django.views.auth	social:begin

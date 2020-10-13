@@ -10,7 +10,7 @@ from mainapp.models import Product
 
 @login_required
 def index(request):
-    products = request.user.basket_set.filter()
+    products = request.user.basket_set.select_related('product').all()
 
     content = {
         "main_title": "корзина",

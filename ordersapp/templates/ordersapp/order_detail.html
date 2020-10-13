@@ -5,8 +5,8 @@
     <p>Стоимость заказа: {{ object.get_total_sum }}</p>
     <p>Количество товара: {{ object.get_items_count }}</p>
     <hr>
-    {% for i in object_list %}
-            <p>Товар: {{ i.product.name }}</p>
+    {% for i in object.orderitem_set.all %}
+            <p>Товар: {{ i.product }}</p>
             <p>Количество: {{ i.quantity }}</p>
             <p>Цена: {{ i.product.price }}</p>
             <hr>

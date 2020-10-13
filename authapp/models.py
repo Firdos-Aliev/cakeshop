@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils.functional import cached_property
 from django.utils.timezone import now
 from cakeshop.settings import USER_EXPIRES_TIMEDELTA, USER_SIZE_KEY, DOMAIN_NAME, EMAIL_HOST_USER
 
@@ -50,15 +51,19 @@ class CakeShopUser(AbstractUser):
     def valid_activation_key(self):
         return now() + USER_EXPIRES_TIMEDELTA > self.activation_key_expires
 
+    @cached_property
+    def basket_items(self):
+        return self.basket_set.all()
+
     def total_sum(self):
         sum = 0
-        for i in self.basket_set.all():
+        for i in self.basket_items:
             sum += i.product.price * i.count
         return sum
 
     def total_count(self):
         count = 0
-        for i in self.basket_set.all():
+        for i in self.basket_items:
             count += i.count
         return count
 

@@ -5,7 +5,8 @@
     <div class="top-content">
         <div class="hot-deal">
                 <p>HOT DEAL</p>
-                <p> {{ product.name }} </p>
+                <p>Категория: {{ product.category.name }}</p>
+                <p>Продукт: {{ product.name }} </p>
                 <a href="{% url 'main:product' pk=product.pk %}"><img src="/media/{{ product.img }}" width="200px" alt="#"></a>
                 <a href="{% url 'basket:new_product' pk=product.pk %}" style="display:block"><button>в корзину</button></a>
             </div>

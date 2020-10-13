@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.functional import cached_property
+
 from mainapp.models import Product
 
 
@@ -22,18 +24,22 @@ class Order(models.Model):
                               max_length=1,
                               choices=ORDER_STATUS_CHOICES,
                               default=FORMING)
-    is_active = models.BooleanField(verbose_name='активен', default=True)
+    is_active = models.BooleanField(verbose_name='активен', default=True, db_index=True)
+
+    @cached_property
+    def order_items(self):
+        return self.orderitem_set.all()
 
     def get_total_sum(self):
         # order = self.orderitem_set.all() # каждая модкль поучить свой заказ
         sum = 0
-        for i in self.orderitem_set.all():
+        for i in self.order_items:
             sum += i.product.price * i.quantity
         return sum
 
     def get_items_count(self):
         count = 0
-        for i in self.orderitem_set.all():
+        for i in self.order_items:
             count += i.quantity
         return count
 
