@@ -1,0 +1,11 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Verify Mail
+From: user@gmail.com
+To: nikita@mail.ru
+Date: Tue, 23 Feb 2021 07:39:15 -0000
+Message-ID: <161406595584.2898.2057428635395564903@manjaro>
+
+Go to link to confirm: http://localhost:8000/auth/user/69/verify/SOMfmAEkFUTCWgkJfNiabULdKwPgFRIA/
+-------------------------------------------------------------------------------

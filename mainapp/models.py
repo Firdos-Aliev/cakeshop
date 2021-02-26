@@ -18,7 +18,7 @@ class Product(models.Model):
     name = models.CharField(verbose_name='Название', max_length=64, null=True)
     text = models.TextField(verbose_name='Описание', blank=True)
     img = models.ImageField(verbose_name='Картинка', upload_to="product_img", blank=True)
-    price = models.DecimalField(verbose_name='Цена', max_digits=6,decimal_places=2, null=False, default=0)
+    price = models.DecimalField(verbose_name='Цена', max_digits=6, decimal_places=2, null=False, default=0)
     count = models.IntegerField(default=0, verbose_name="Количество")
     is_active = models.BooleanField(default=True, db_index=True)
 
